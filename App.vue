@@ -1,60 +1,38 @@
 <template>
   <v-app>
-    <v-app-bar
-      app
-      color="primary"
-      dark
-    >
-      <div class="d-flex align-center">
-        <v-img
-          alt="Vuetify Logo"
-          class="shrink mr-2"
-          contain
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
-          transition="scale-transition"
-          width="40"
-        />
-
-        <v-img
-          alt="Vuetify Name"
-          class="shrink mt-1 hidden-sm-and-down"
-          contain
-          min-width="100"
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
-          width="100"
-        />
-      </div>
-
-      <v-spacer></v-spacer>
-
-      <v-btn
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-        text
-      >
-        <span class="mr-2">Latest Release</span>
-        <v-icon>mdi-open-in-new</v-icon>
-      </v-btn>
-    </v-app-bar>
-
     <v-main>
-      <HelloWorld/>
+      <v-container>
+        <v-tabs>
+          <v-tab @click="login = true">Login</v-tab>
+          <v-tab @click="register = true; login = false">Register</v-tab>
+        </v-tabs>
+        <div>
+          <Login v-if="login" />
+
+          <Register v-if="register" />
+        </div>
+      </v-container>
     </v-main>
   </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld';
+  import Login from "@/components/Login";
+  import Register from "@/components/Register";
 
-export default {
-  name: 'App',
+  export default {
+    name: 'App',
+    components: {
+      Login,
+      Register
+    },
 
-  components: {
-    HelloWorld,
-  },
-
-  data: () => ({
-    //
-  }),
-};
+    data(){
+      return{
+        login: true,
+        register: false,
+      }
+    },
+    
+  };
 </script>
